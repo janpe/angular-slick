@@ -9,6 +9,7 @@ angular.module('slick', [])
       currentIndex: "="
       accessibility: "@"
       arrows: "@"
+      asNavFor: "@"
       autoplay: "@"
       autoplaySpeed: "@"
       centerMode: "@"
@@ -33,6 +34,7 @@ angular.module('slick', [])
       swipe: "@"
       touchMove: "@"
       touchThreshold: "@"
+      variableWidth: "@"
       vertical: "@"
     link: (scope, element, attrs) ->
 
@@ -44,6 +46,7 @@ angular.module('slick', [])
           slider.slick
             accessibility: scope.accessibility isnt "false"
             arrows: scope.arrows isnt "false"
+            asNavFor: scope.asNavFor or null
             autoplay: scope.autoplay is "true"
             autoplaySpeed: if scope.autoplaySpeed? then parseInt(scope.autoplaySpeed, 10) else 3000
             centerMode: scope.centerMode is "true"
@@ -77,6 +80,7 @@ angular.module('slick', [])
             swipe: scope.swipe isnt "false"
             touchMove: scope.touchMove isnt "false"
             touchThreshold: if scope.touchThreshold then parseInt(scope.touchThreshold, 10) else 5
+            variableWidth: scope.variableWidth is "true"
             vertical: scope.vertical is "true"
 
           scope.$watch("currentIndex", (newVal, oldVal) ->
