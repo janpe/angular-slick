@@ -22,13 +22,13 @@ angular.module('slick', [])
       focusOnSelect: "@"
       infinite: "@"
       lazyLoad: "@"
-      nextArrow: "="
+      nextArrow: "@"
       onBeforeChange: "&"
       onAfterChange: "&"
       onInit: "&"
       onReInit: "&"
       pauseOnHover: "@"
-      prevArrow: "="
+      prevArrow: "@"
       responsive: "&"
       slide: "@"
       slidesToShow: "@"
@@ -62,6 +62,7 @@ angular.module('slick', [])
             focusOnSelect: scope.focusOnSelect is "true"
             infinite: scope.infinite isnt "false"
             lazyLoad: scope.lazyLoad or "ondemand"
+            nextArrow: scope.nextArrow or '<button type="button" class="slick-next">Next</button>'
             onBeforeChange: scope.onBeforeChange or null
             onAfterChange: (sl, index) ->
               scope.onAfterChange() if scope.onAfterChange
@@ -76,6 +77,7 @@ angular.module('slick', [])
                 sl.slideHandler(currentIndex)
             onReInit: scope.onReInit or null
             pauseOnHover: scope.pauseOnHover isnt "false"
+            prevArrow: scope.prevArrow or '<button type="button" class="slick-prev">Previous</button>'
             responsive: scope.responsive() or null
             slide: scope.slide or "div"
             slidesToShow: if scope.slidesToShow? then parseInt(scope.slidesToShow, 10) else 1

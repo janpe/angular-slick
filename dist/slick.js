@@ -10,6 +10,7 @@ angular.module('slick', []).directive('slick', [
         currentIndex: '=',
         accessibility: '@',
         arrows: '@',
+        asNavFor: '@',
         autoplay: '@',
         autoplaySpeed: '@',
         centerMode: '@',
@@ -19,13 +20,16 @@ angular.module('slick', []).directive('slick', [
         draggable: '@',
         easing: '@',
         fade: '@',
+        focusOnSelect: '@',
         infinite: '@',
         lazyLoad: '@',
+        nextArrow: '@',
         onBeforeChange: '&',
         onAfterChange: '&',
         onInit: '&',
         onReInit: '&',
         pauseOnHover: '@',
+        prevArrow: '@',
         responsive: '&',
         slide: '@',
         slidesToShow: '@',
@@ -34,6 +38,7 @@ angular.module('slick', []).directive('slick', [
         swipe: '@',
         touchMove: '@',
         touchThreshold: '@',
+        variableWidth: '@',
         vertical: '@'
       },
       link: function (scope, element, attrs) {
@@ -48,6 +53,7 @@ angular.module('slick', []).directive('slick', [
             slider.slick({
               accessibility: scope.accessibility !== 'false',
               arrows: scope.arrows !== 'false',
+              asNavFor: scope.asNavFor || null,
               autoplay: scope.autoplay === 'true',
               autoplaySpeed: scope.autoplaySpeed != null ? parseInt(scope.autoplaySpeed, 10) : 3000,
               centerMode: scope.centerMode === 'true',
@@ -57,8 +63,10 @@ angular.module('slick', []).directive('slick', [
               draggable: scope.draggable !== 'false',
               easing: scope.easing || 'linear',
               fade: scope.fade === 'true',
+              focusOnSelect: scope.focusOnSelect === 'true',
               infinite: scope.infinite !== 'false',
               lazyLoad: scope.lazyLoad || 'ondemand',
+              nextArrow: scope.nextArrow || '<button type="button" class="slick-next">Next</button>',
               onBeforeChange: scope.onBeforeChange || null,
               onAfterChange: function (sl, index) {
                 if (scope.onAfterChange) {
@@ -81,6 +89,7 @@ angular.module('slick', []).directive('slick', [
               },
               onReInit: scope.onReInit || null,
               pauseOnHover: scope.pauseOnHover !== 'false',
+              prevArrow: scope.prevArrow || '<button type="button" class="slick-prev">Previous</button>',
               responsive: scope.responsive() || null,
               slide: scope.slide || 'div',
               slidesToShow: scope.slidesToShow != null ? parseInt(scope.slidesToShow, 10) : 1,
@@ -89,6 +98,7 @@ angular.module('slick', []).directive('slick', [
               swipe: scope.swipe !== 'false',
               touchMove: scope.touchMove !== 'false',
               touchThreshold: scope.touchThreshold ? parseInt(scope.touchThreshold, 10) : 5,
+              variableWidth: scope.variableWidth === 'true',
               vertical: scope.vertical === 'true'
             });
             return scope.$watch('currentIndex', function (newVal, oldVal) {
